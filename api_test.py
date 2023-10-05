@@ -8,6 +8,7 @@ import requests
 import psycopg2
 import json
 
+from datetime import datetime
 from sqlalchemy import create_engine
 
 # Define la ruta completa al archivo de configuración
@@ -50,6 +51,7 @@ conn = psycopg2.connect(**connection_params)
 engine = create_engine(
     f"postgresql+psycopg2://{connection_params['user']}:{connection_params['password']}@{connection_params['host']}/{connection_params['database']}"
 )
+    
 df.to_sql('usa_universities', engine, if_exists='replace', index=False)
 
 # Cierra la conexión cuando hayas terminado
